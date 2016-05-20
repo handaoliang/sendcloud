@@ -18,7 +18,7 @@ var (
     SENDCLOUD_HOST        string = "http://sendcloud.sohu.com/smsapi/send"
     SENDCLOUD_SMS_USER    string = ""
     SENDCLOUD_SMS_KEY     string = ""
-    SENDCLOUD_TEMPLAGE_ID string = ""
+    SENDCLOUD_TEMPLATE_ID string = ""
     SENDCLOUD_MSG_TYPE    string = "0"
 )
 
@@ -64,7 +64,7 @@ func BuildQueryString(Param map[string]string, IsQueryEscapeString bool) string 
 
 }
 
-func SendcloudSMSSend(PhoneNumber string, Message map[string]string) {
+func SendcloudSMS(PhoneNumber string, Message map[string]string) {
 
     var Buffer bytes.Buffer
     for k, v := range Message {
@@ -79,7 +79,7 @@ func SendcloudSMSSend(PhoneNumber string, Message map[string]string) {
 
     var ParamMap = map[string]string{
         "smsUser":    SENDCLOUD_SMS_USER,
-        "templateId": SENDCLOUD_TEMPLAGE_ID,
+        "templateId": SENDCLOUD_TEMPLATE_ID,
         "msgType":    SENDCLOUD_MSG_TYPE,
         "phone":      PhoneNumber,
         "vars":       TempString,
@@ -103,5 +103,5 @@ func main() {
         "verify_code": "123456",
         "exp_time":    "300",
     }
-    SendcloudSMSSend("13910248888", msg)
+    SendcloudSMS("13910248888", msg)
 }
